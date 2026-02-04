@@ -2,10 +2,21 @@ spring:
   application:
     name: learning-spring-ai
   ai:
-    ollama:
-      base-url: http://localhost:11434
+#    ollama:
+#      base-url: http://localhost:11434
+#      chat:
+#        options:
+#          model: nate/instinct
+    openai:
       chat:
         options:
-          model: nate/instinct
+          model: gpt-4o-mini
+          temperature: 0.9
+      api-key: ${OPENAI_API_KEY}
 
 
+
+logging:
+  level:
+    org.springframework.ai:
+      chat.client: DEBUG
