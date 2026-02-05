@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static java.awt.SystemColor.text;
+
 @SpringBootTest
 public class AIServiceTests {
 
@@ -27,7 +29,15 @@ public class AIServiceTests {
 
     @Test
     public void testStoreEmbedText(){
-        aiService.ingestDataToVectorStore("Greek gods had brutal punishments");
+        aiService.ingestDataToVectorStore();
+    }
+
+    @Test
+    public void testSimilaritySearch() {
+        var res = aiService.similaritySearch("relational database");
+        for (var doc : res) {
+            System.out.println(res);
+        }
     }
 }
 
