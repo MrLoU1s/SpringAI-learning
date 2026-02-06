@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static java.awt.SystemColor.text;
 
 @SpringBootTest
 public class AIServiceTests {
@@ -38,6 +37,12 @@ public class AIServiceTests {
         for (var doc : res) {
             System.out.println(res);
         }
+    }
+
+    @Test
+    public void testAskAI() {
+        var req = aiService.askAI("What is AI?");
+        System.out.println(req);
     }
 }
 
