@@ -31,49 +31,7 @@ public class AIService {
         return embeddingModel.embed(text);
     }
 
-    public String askAI (String prompt){
 
-        String template = """
-                You are an AI assistant helping a developer.
-                
-                Rules:
-                -use ONLY the information provided in the context
-                -You may rephrase, summarize, and explain in natural language
-                -Do not introduce new concepts or facts. 
-                -If multiple context sections are relevant, combine them into a single explanation. 
-                -If the answer is NOT present, say "I don't know King :("
-                
-                Context:
-                {context}
-                
-                Answer in a friendly, conversation tone. 
-                """;
-
-        List<Document> documents = vectorStore.similaritySearch(SearchRequest.builder()
-                .query(prompt)
-                .topK(2)
-                        .similarityThreshold(0.5)
-                .filterExpression("topic =='Spring Boot' or topic =='Spring AI'")
-                .build());
-
-        //converting docs to string
-        String context = documents.stream()
-                .map(Document::getText)
-                .collect(Collectors.joining("\n\n"));
-
-        PromptTemplate promptTemplate = new PromptTemplate(template);
-        String systemPrompt = promptTemplate.render(Map.of("context", context));
-
-
-        return chatClient.prompt()
-                .system(systemPrompt)
-                .user(prompt)
-                .advisors(
-                        new SimpleLoggerAdvisor()
-                )
-                .call()
-                .content();
-    }
 
     public void ingestDataToVectorStore(){
         List<Document> documents = List.of(

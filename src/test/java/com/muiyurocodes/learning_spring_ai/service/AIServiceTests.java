@@ -39,11 +39,12 @@ public class AIServiceTests {
         }
     }
 
-    @Test
-    public void testAskAI() {
-        var req = aiService.askAI("What is AI?");
-        System.out.println(req);
-    }
+//    @Test
+//    public void testAskAI() {
+//        var req = aiService.askAI("What is AI?");
+//        System.out.println(req);
+//    }
+
 }
 
 
