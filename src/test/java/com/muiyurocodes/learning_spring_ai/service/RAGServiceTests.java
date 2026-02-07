@@ -20,4 +20,9 @@ public class RAGServiceTests {
     public void testIngestDataToVectorStore() {
         ragService.ingestPdfToVectorStore();
     }
+
+    @Test
+    public void testAskAIWithAdvisors() {
+        ragService.askAIWithAdvisors("What is my name Jarvis?", "louis1");
+    }
 }

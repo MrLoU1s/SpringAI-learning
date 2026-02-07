@@ -13,7 +13,7 @@ public class AIServiceTests {
 
     @Test
     public void testGetJoke() {
-        var joke = aiService.getJoke("Jeffrey Epstein");
+        var joke = aiService.getJoke("Tom and Jerry");
         System.out.println(joke);
     }
 
