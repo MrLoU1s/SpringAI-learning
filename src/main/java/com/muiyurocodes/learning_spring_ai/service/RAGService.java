@@ -1,9 +1,14 @@
 package com.muiyurocodes.learning_spring_ai.service;
 
+import com.muiyurocodes.learning_spring_ai.advisor.TokenUsageAdvisor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.client.advisor.SafeGuardAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.client.advisor.vectorstore.VectorStoreChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
@@ -28,6 +33,8 @@ public class RAGService {
     //enable embedding
     private final EmbeddingModel embeddingModel;
     private final VectorStore vectorStore;
+
+    private final ChatMemory chatMemory;
 
     //The pdf resource is passed as follows
     @Value("classpath:Elden_Ring_Lore.pdf")
@@ -98,10 +105,27 @@ public class RAGService {
                         )
                 .user(prompt)
                 .advisors(
+                        //safeguard to protect from jailbreaks e.t.c.,
+                       // new SafeGuardAdvisor(List.of("politics", "NSFW")),
+
+                        //ordering matters. Advisor->Response->Advisor->Response...
+                        MessageChatMemoryAdvisor.builder(chatMemory)
+                                        .conversationId(userId)
+                                                .build(),
+
                         VectorStoreChatMemoryAdvisor.builder(vectorStore)
                                 .conversationId(userId)
                                 .defaultTopK(4)
-                                .build()
+                                .build(),
+
+                        QuestionAnswerAdvisor.builder(vectorStore)
+                                .searchRequest(SearchRequest.builder()
+                                        .filterExpression("file_name=='Elden_Ring_Lore.pdf'")
+                                        .topK(4)
+                                        .build())
+                                .build(),
+
+                        new TokenUsageAdvisor()
                 )
                 .call()
                 .content();
