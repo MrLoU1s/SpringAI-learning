@@ -6,12 +6,12 @@ This project serves as a comprehensive reference implementation for building mod
 
 ---
 
-## 🚀 Key Achievements (The XYZ Format)
+## 🚀 Key Achievements 
 
 ### **1. Intelligent Tool Execution**
-*   **X (Accomplished):** Enabled the AI to autonomously execute complex business logic—creating, retrieving, and updating flight bookings in a relational database—directly from natural language prompts.
-*   **Y (Measured By):** Successfully processed over **50+ test scenarios** involving date parsing variations, multi-turn conversations, and context switching with **100% schema compliance** for the underlying PostgreSQL database.
-*   **Z (How):** Leveraged **Spring AI's Function Calling API** to map Java methods (`@Tool`) to the LLM, implemented robust **JSON-to-Java date parsing** strategies to handle LLM inconsistencies, and utilized **Spring Data JPA** for persistence.
+* Enabled the AI to autonomously execute complex business logic—creating, retrieving, and updating flight bookings in a relational database—directly from natural language prompts.
+* Successfully processed over **50+ test scenarios** involving date parsing variations, multi-turn conversations, and context switching with **100% schema compliance** for the underlying PostgreSQL database.
+* Leveraged **Spring AI's Function Calling API** to map Java methods (`@Tool`) to the LLM, implemented robust **JSON-to-Java date parsing** strategies to handle LLM inconsistencies, and utilized **Spring Data JPA** for persistence.
 
 ### **2. Persistent & Context-Aware Conversations**
 *   **X (Accomplished):** Built a "memory-aware" chatbot that remembers user details and past interactions across different sessions, providing a seamless user experience.
