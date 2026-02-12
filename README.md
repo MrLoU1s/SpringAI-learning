@@ -14,14 +14,14 @@ This project serves as a comprehensive reference implementation for building mod
 * Leveraged **Spring AI's Function Calling API** to map Java methods (`@Tool`) to the LLM, implemented robust **JSON-to-Java date parsing** strategies to handle LLM inconsistencies, and utilized **Spring Data JPA** for persistence.
 
 ### **2. Persistent & Context-Aware Conversations**
-*   **X (Accomplished):** Built a "memory-aware" chatbot that remembers user details and past interactions across different sessions, providing a seamless user experience.
-*   **Y (Measured By):** Achieved **zero context loss** across server restarts by persisting conversation history in a dedicated **PostgreSQL `chat_memory` table**, allowing users to resume booking flows days later.
-*   **Z (How):** Integrated **`VectorStoreChatMemoryAdvisor`** and **`MessageChatMemoryAdvisor`** within the RAG pipeline, backed by a **JDBC Chat Memory Repository** and a **PGVector** store for semantic history retrieval.
+* Built a "memory-aware" chatbot that remembers user details and past interactions across different sessions, providing a seamless user experience.
+* Achieved **zero context loss** across server restarts by persisting conversation history in a dedicated **PostgreSQL `chat_memory` table**, allowing users to resume booking flows days later.
+* Integrated **`VectorStoreChatMemoryAdvisor`** and **`MessageChatMemoryAdvisor`** within the RAG pipeline, backed by a **JDBC Chat Memory Repository** and a **PGVector** store for semantic history retrieval.
 
 ### **3. Advanced RAG Implementation**
-*   **X (Accomplished):** Created a domain-specific expert system capable of answering questions about specific topics (e.g., "Elden Ring Lore" or "Spring AI Docs") with high accuracy, reducing hallucinations.
-*   **Y (Measured By):** Delivered precise answers sourced **exclusively** from ingested PDF documents and predefined datasets, verified by a strict system prompt that refuses to answer out-of-domain queries (the "I don't know King :(" test).
-*   **Z (How):** Implemented a **PGVector-based Vector Store** running in **Docker**, utilized **`PagePdfDocumentReader`** for document ingestion, and applied **metadata filtering** (`topic == 'Spring Boot'`) during similarity searches to narrow down context.
+* Created a domain-specific expert system capable of answering questions about specific topics (e.g., "Elden Ring Lore" or "Spring AI Docs") with high accuracy, reducing hallucinations.
+* Delivered precise answers sourced **exclusively** from ingested PDF documents and predefined datasets, verified by a strict system prompt that refuses to answer out-of-domain queries (the "I don't know King :(" test).
+* Implemented a **PGVector-based Vector Store** running in **Docker**, utilized **`PagePdfDocumentReader`** for document ingestion, and applied **metadata filtering** (`topic == 'Spring Boot'`) during similarity searches to narrow down context.
 
 ---
 
